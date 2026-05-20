@@ -1,0 +1,105 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h2 class="mb-4">
+
+        Applicants for {{ job.title }}
+
+    </h2>
+
+    {% for application in applications %}
+
+        <div class="card shadow p-4 mb-4">
+
+            <h4>
+
+                {{ application.student.username }}
+
+            </h4>
+
+            <p>
+
+                Email:
+                {{ application.student.email }}
+
+            </p>
+
+            <p>
+
+                Status:
+                <strong>
+                    {{ application.status }}
+                </strong>
+
+            </p>
+
+            <p>
+
+                Applied On:
+                {{ application.applied_at }}
+
+            </p>
+
+            <!-- RESUME BUTTON -->
+
+            {% if application.resume %}
+
+    <a href="{{ application.resume.url }}"
+       class="btn btn-secondary mb-3">
+
+        View Resume
+
+    </a>
+
+{% else %}
+
+    <div class="alert alert-warning">
+
+        Resume not uploaded
+
+    </div>
+
+{% endif %}
+            <br>
+
+            <!-- ACTION BUTTONS -->
+
+            <a href="{% url 'update_application_status' application.id 'SHORTLISTED' %}"
+               class="btn btn-warning">
+
+                Shortlist
+
+            </a>
+
+            <a href="{% url 'update_application_status' application.id 'SELECTED' %}"
+               class="btn btn-success">
+
+                Select
+
+            </a>
+
+            <a href="{% url 'update_application_status' application.id 'REJECTED' %}"
+               class="btn btn-danger">
+
+                Reject
+
+            </a>
+
+        </div>
+
+    {% empty %}
+
+        <div class="alert alert-info">
+
+            No applicants yet.
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

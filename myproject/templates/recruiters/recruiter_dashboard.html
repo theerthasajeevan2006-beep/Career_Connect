@@ -1,0 +1,101 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h1 class="mb-4">
+        Recruiter Dashboard
+    </h1>
+
+    <!-- SUMMARY CARDS -->
+    <div class="row mb-5">
+
+        <div class="col-md-4">
+
+            <div class="card shadow p-4">
+
+                <h3>Total Jobs</h3>
+
+                <h1>
+                    {{ jobs.count }}
+                </h1>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card shadow p-4">
+
+                <h3>Total Applicants</h3>
+
+                <h1>
+                    {{ applications.count }}
+                </h1>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card shadow p-4 text-center">
+
+                <a href="{% url 'add_job' %}"
+                   class="btn btn-primary btn-lg">
+
+                    Add New Job
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- JOBS SECTION -->
+    <h2 class="mb-4">
+        Posted Jobs
+    </h2>
+
+    {% for job in jobs %}
+
+        <div class="card shadow p-4 mb-4">
+
+            <h3>
+                {{ job.title }}
+            </h3>
+
+            <p>
+                {{ job.location }}
+            </p>
+
+            <p>
+                {{ job.salary }}
+            </p>
+
+            <a href="{% url 'view_applicants' job.id %}"
+               class="btn btn-dark">
+
+                View Applicants
+
+            </a>
+
+        </div>
+
+    {% empty %}
+
+        <div class="alert alert-info">
+
+            No jobs posted yet.
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

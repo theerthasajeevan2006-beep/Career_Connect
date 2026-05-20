@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<h3>Applicants</h3>
+
+<table class="table table-bordered">
+
+<tr>
+    <th>Student</th>
+    <th>Job</th>
+    <th>Status</th>
+    <th>Resume</th>
+</tr>
+
+{% for app in applications %}
+
+<tr>
+    <td>{{ app.student.username }}</td>
+    <td>{{ app.job.title }}</td>
+    <td>{{ app.status }}</td>
+    <td>
+        <a href="{{ app.resume.url }}">Download</a>
+    </td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}

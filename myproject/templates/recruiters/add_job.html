@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<div class="card shadow p-4">
+
+<h3>Add Job</h3>
+
+<form method="POST">
+
+{% csrf_token %}
+
+<input type="text" name="title" class="form-control mb-3" placeholder="Job Title">
+
+<textarea name="description" class="form-control mb-3" placeholder="Description"></textarea>
+
+<input type="text" name="location" class="form-control mb-3" placeholder="Location">
+
+<input type="text" name="salary" class="form-control mb-3" placeholder="Salary">
+
+<input type="text" name="skills_required" class="form-control mb-3" placeholder="Skills Required">
+
+<input type="date" name="deadline" class="form-control mb-3">
+
+<select name="job_type" class="form-control mb-3">
+    <option value="FULLTIME">Full Time</option>
+    <option value="INTERNSHIP">Internship</option>
+</select>
+
+<button type="submit" class="btn btn-primary">Post Job</button>
+
+</form>
+
+</div>
+
+{% endblock %}

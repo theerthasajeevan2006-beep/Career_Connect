@@ -1,0 +1,71 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h2 class="mb-4">
+        Student Dashboard
+    </h2>
+
+    <div class="card p-4 shadow mb-4">
+
+        <h4>
+            Welcome {{ request.user.username }}
+        </h4>
+
+        <p>
+            Email:
+            {{ request.user.email }}
+        </p>
+
+    </div>
+
+    <h3 class="mb-3">
+        Applied Jobs
+    </h3>
+
+    {% if applications %}
+
+        {% for application in applications %}
+
+            <div class="card p-3 mb-3 shadow-sm">
+
+                <h4>
+                    {{ application.job.title }}
+                </h4>
+
+                <p>
+                    Company:
+                    {{ application.job.company_name }}
+                </p>
+
+                <p>
+                    Status:
+                    <strong>
+                        {{ application.status }}
+                    </strong>
+                </p>
+
+                <p>
+                    Applied On:
+                    {{ application.applied_at }}
+                </p>
+
+            </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="alert alert-info">
+
+            No job applications yet.
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<div class="row">
+
+{% for job in jobs %}
+
+<div class="col-lg-4 col-md-6 mb-4">
+
+<div class="card shadow-lg h-100 border-0 rounded-4">
+
+<div class="card-body">
+
+<h4 class="fw-bold">{{ job.title }}</h4>
+
+<p>
+<i class="fa-solid fa-location-dot"></i>
+{{ job.location }}
+</p>
+
+<p>
+<i class="fa-solid fa-money-bill"></i>
+{{ job.salary }}
+</p>
+
+<p>{{ job.skills_required }}</p>
+
+<a href="{% url 'apply_job' job.id %}" class="btn btn-primary w-100 rounded-pill">
+Apply Now
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}
